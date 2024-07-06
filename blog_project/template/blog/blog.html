@@ -1,0 +1,52 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+
+
+{% block msg %}  
+  {% if messages %}
+  {% for mg in messages %}
+  <div class="pt-5"></div>
+  <div class="pt-5"></div>
+
+  <div {% if mg.tags %} class="alert alert-{{mg.tags}} alert-dismissible fade show" role ="alert" {% endif %}><strong>{{mg}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> </button>
+  </div>
+  {% endfor %}
+  {% endif %}
+{% endblock msg %}
+
+
+
+{% block content %}
+
+<div class="col-sm-9 p-3 my-5">
+  <h1 class="text-success Rounded my-5">
+    Blog
+  </h1>
+
+  <div class="jumbotron  px-4 py-4">
+
+    <div class="">
+      <img class="rounded-circle img-fluid article-img" src="{{ blog.user.profile.image.url }}">
+      <a class="mr-2 disabled-link text-dark " href="{% url 'profile' blog.user.id %}">{{ blog.user.first_name }} {{ blog.user.last_name }}</a>
+      <small class="text-muted"> &centerdot;  Published on {{ blog.create_at|date:"d F, Y" }}</small>
+      <small class="text-muted"> &#124; Last Updated on {{ blog.update_at|date:"d F, Y" }}</small>
+      <a class="text-muted disabled-link" href="{% url 'category' blog.category %}"> &centerdot; {{ blog.category }}</a>
+
+
+    </div> <br>
+
+
+    <p class="display-5 text-success">{{ blog.title }}</p>
+
+    <p class="p-sa">{{blog.description}}</p>
+
+
+  </div><br>
+
+</div>
+
+
+
+{% endblock content %}

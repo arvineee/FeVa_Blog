@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark text-success bg-success border border-success fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand text-success bg-light border border-success-subtle rounded-3 Rounded p-2" href="/">FeVa  Blog</a>
+    <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Category
+          </a>
+          <ul class="dropdown-menu bg-success-subtle">
+            <li><a class="dropdown-item" href="{% url 'category' 'Health' %}">Health</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'News' %}">News</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'Texhnology' %}">Technology</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'Others' %}">Others</a></li>
+
+          </ul>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'userprofile' user.id %}">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+        {% endif %}
+
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
